@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register - India Heritage Explorer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global & Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            /* Full viewport height and center content */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Header & Navigation (Consistent) */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px 5%;
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #CC5500; 
+            font-weight: 700;
+            text-decoration: none; 
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+        .nav-links li {
+            display: inline;
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #007BFF; 
+        }
+        
+        /* Main Content Area (Centering the form) */
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #d4d4d4 100%);
+        }
+        
+        /* Form Container Styling */
+        .auth-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .auth-container h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #CC5500;
+        }
+
+        /* Tabs/Toggle Styles */
+        .tab-switch {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 0;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #777;
+            border: none;
+            background: none;
+            border-bottom: 3px solid transparent;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #007BFF;
+            border-bottom: 3px solid #007BFF;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: #CC5500;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #a94500;
+        }
+        
+        /* Role Selection Hint */
+        #register-form small {
+            display: block;
+            margin-top: 10px;
+            color: #888;
+            font-size: 0.85em;
+        }
+
+        /* Hidden Content */
+        .form-content.hidden {
+            display: none;
+        }
+
+        /* Footer (Consistent) */
+        footer {
+            background: #2c3e50; 
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Bharat Darshan</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore Sites</a></li>
+                <li><a href="tours.html">Virtual Tours</a></li>
+                <li><a href="about.html">About India</a></li>
+                <li><a href="login.html" class="login-btn active">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <h1>Access the Explorer Platform</h1>
+            
+            <div class="tab-switch">
+                <button id="login-tab" class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button id="register-tab" class="tab-btn" onclick="switchTab('register')">Register</button>
+            </div>
+
+            <div id="login-content" class="form-content">
+                <form id="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">Email or Username</label>
+                        <input type="text" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login to Account</button>
+                </form>
+            </div>
+
+            <div id="register-content" class="form-content hidden">
+                <form id="register-form" onsubmit="handleRegistration(event)">
+                    <div class="form-group">
+                        <label for="reg-name">Full Name</label>
+                        <input type="text" id="reg-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email Address</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-role">I am registering as a...</label>
+                        <select id="reg-role" required>
+                            <option value="enthusiast" selected>Cultural Enthusiast (Explorer)</option>
+                            <option value="creator">Content Creator (Contributor)</option>
+                            <option value="guide">Tour Guide (Application required)</option>
+                        </select>
+                        <small>Admins are invited by the platform manager only.</small>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 India Heritage Explorer (Bharat Darshan). Inspired by rich Indian culture. | Privacy Policy | Contact Us</p>
+    </footer>
+
+    <script>
+        // Function to switch between Login and Register tabs
+        function switchTab(tabId) {
+            // Hide all content areas
+            document.getElementById('login-content').classList.add('hidden');
+            document.getElementById('register-content').classList.add('hidden');
+
+            // Deactivate all tab buttons
+            document.getElementById('login-tab').classList.remove('active');
+            document.getElementById('register-tab').classList.remove('active');
+
+            // Show the selected content area and activate the button
+            if (tabId === 'login') {
+                document.getElementById('login-content').classList.remove('hidden');
+                document.getElementById('login-tab').classList.add('active');
+            } else if (tabId === 'register') {
+                document.getElementById('register-content').classList.remove('hidden');
+                document.getElementById('register-tab').classList.add('active');
+            }
+        }
+
+        // Placeholder function for handling Login
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent default form submission
+            const email = document.getElementById('login-email').value;
+            // ... password logic ...
+
+            // --- SIMULATED ROLE CHECK (The Critical Change for Admin Access) ---
+            let userRole = 'enthusiast'; 
+
+            // Use 'admin@bharatdarshan.com' to simulate admin login
+            if (email === 'admin@bharatdarshan.com') {
+                userRole = 'admin';
+            } else if (email === 'creator@bharatdarshan.com') {
+                userRole = 'creator';
+            }
+            // ---------------------------------------------------
+            
+            // **STEP 1: SAVE THE ROLE TO LOCAL STORAGE**
+            localStorage.setItem('userRole', userRole);
+
+            // **STEP 2: REDIRECT BASED ON ROLE**
+            if (userRole === 'admin') {
+                alert('Admin Login Successful! Redirecting to Dashboard.');
+                window.location.href = 'admin/dashboard.html';
+            } else {
+                alert('Login successful! Redirecting to Home Page.');
+                window.location.href = 'index.html'; 
+            }
+        }
+
+        // Placeholder function for handling Registration
+        function handleRegistration(event) {
+            event.preventDefault(); // Prevent default form submission
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const role = document.getElementById('reg-role').value;
+
+            console.log('Registration attempt:', { name, email, role });
+            
+            alert(`Registration successful! You are signed up as a ${role}. Please log in.`);
+            switchTab('login'); // Switch back to login tab
+        }
+
+        // JavaScript to ensure the 'Login/Register' link is highlighted on load
+        document.addEventListener('DOMContentLoaded', () => {
+             // Deactivate all nav links
+             document.querySelectorAll('.nav-links a').forEach(link => {
+                 link.classList.remove('active');
+             });
+             // Activate the login link
+             const loginLink = document.querySelector('a[href="login.html"]');
+             if (loginLink) {
+                loginLink.classList.add('active');
+             }
+        });
+    </script>
+</body>
+</html>

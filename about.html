@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - India Heritage Explorer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Basic Reset and Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+        }
+        
+        /* Containers */
+        main {
+            padding-top: 70px; /* Space for fixed header */
+            padding-bottom: 50px;
+        }
+        
+        section {
+            padding: 40px 5%;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #CC5500;
+        }
+        
+        h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        
+        /* Header & Navigation (Copied from index.html for consistency) */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #CC5500; 
+            font-weight: 700;
+            text-decoration: none; 
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+        .nav-links li {
+            display: inline;
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #007BFF; 
+        }
+
+        .login-btn {
+            border: 1px solid #007BFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        /* Mission Section */
+        #mission {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin: 0 5%;
+        }
+        
+        /* Team & Roles Section */
+        #team-roles {
+            background-color: #e0f7fa; /* Light background for contrast */
+            border-radius: 10px;
+            margin: 30px 5%;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .role-card {
+            background: #fff;
+            padding: 20px;
+            border-left: 5px solid #007BFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .role-card h4 {
+            color: #007BFF;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .role-card p {
+            font-size: 0.95em;
+        }
+
+        /* Footer (Copied from index.html) */
+        footer {
+            background: #2c3e50; 
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Bharat Darshan</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore Sites</a></li>
+                <li><a href="tours.html">Virtual Tours</a></li>
+                <li><a href="about.html" class="active">About India</a></li>
+                <li><a href="login.html" class="login-btn">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="header-content">
+            <h1>Our Mission: Preserving and Presenting Indian Heritage</h1>
+            <p style="text-align: center; font-size: 1.1em; color: #555;">
+                We are dedicated to inspiring awareness and appreciation for the deep, diverse, and enduring culture of India.
+            </p>
+        </section>
+
+        <section id="mission">
+            <h2>🌍 The Heart of Bharat Darshan</h2>
+            <p>
+                India's heritage is a continuous story spanning millennia—a vibrant tapestry woven with ancient philosophies,
+                architectural marvels, and rich artistic traditions. The **India Heritage Explorer** (or **Bharat Darshan**) app
+                was created as a digital bridge, connecting this magnificent past with the global audience of today.
+            </p>
+            
+            <h3>Our Vision</h3>
+            <ul>
+                <li>To be the **most interactive and comprehensive** digital resource for Indian culture and history.</li>
+                <li>To utilize technology (360° tours, augmented reality) to create immersive, accessible learning experiences.</li>
+                <li>To foster a global community dedicated to cultural preservation and dialogue.</li>
+            </ul>
+        </section>
+
+        <section id="team-roles">
+            <h2>🤝 Our Community and User Roles</h2>
+            <p>This platform is powered by collaboration, combining accurate scholarship with passionate exploration. We recognize four key user roles that drive our content and interaction:</p>
+
+            <div class="role-grid">
+                <div class="role-card">
+                    <h4>Admin (The Curator)</h4>
+                    <p>Manages the platform, ensures content accuracy and quality control, oversees user interactions, and maintains the technical integrity of the site.</p>
+                </div>
+                <div class="role-card">
+                    <h4>Cultural Enthusiast (The Explorer)</h4>
+                    <p>Our core user. Explores content, participates in virtual tours, engages in cultural discussions, and discovers the heritage of India.</p>
+                </div>
+                <div class="role-card">
+                    <h4>Content Creator (The Educator)</h4>
+                    <p>Develops and updates educational articles, crafts detailed site descriptions, creates interactive features, and curates virtual tour material.</p>
+                </div>
+                <div class="role-card">
+                    <h4>Tour Guide (The Storyteller)</h4>
+                    <p>Conducts live virtual tours, provides real-time historical insights, shares local knowledge, and answers user queries during scheduled events.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section style="text-align: center;">
+            <h2>Ready to Dive Deeper?</h2>
+            <p>Join our mission! Whether you want to explore or contribute, your journey begins here.</p>
+            <a href="login.html" class="login-btn" style="padding: 10px 20px; font-weight: 600;">Get Started / Register</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 India Heritage Explorer (Bharat Darshan). Inspired by rich Indian culture. | Privacy Policy | Contact Us</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             // Remove 'active' class from any other link
+             document.querySelectorAll('.nav-links a').forEach(link => {
+                 link.classList.remove('active');
+             });
+             // Add 'active' class to the current page link
+             const aboutLink = document.querySelector('a[href="about.html"]');
+             if (aboutLink) {
+                aboutLink.classList.add('active');
+             }
+        });
+    </script>
+</body>
+</html>

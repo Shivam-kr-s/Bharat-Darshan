@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Heritage Sites - India Heritage Explorer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global & Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+        }
+        
+        /* Containers */
+        main {
+            padding-top: 70px; /* Space for fixed header */
+            display: flex; /* Enable Flexbox for sidebar and content */
+            min-height: 90vh;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+        }
+        
+        /* Header & Navigation (Consistent) */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #CC5500; 
+            font-weight: 700;
+            text-decoration: none; 
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+        .nav-links li {
+            display: inline;
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #007BFF; 
+        }
+
+        .login-btn {
+            border: 1px solid #007BFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* --- Exploration Layout Specific Styles --- */
+
+        /* Sidebar for Filters */
+        .sidebar {
+            width: 280px;
+            padding: 30px 20px;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0; /* Prevents sidebar from shrinking */
+        }
+        
+        .sidebar h2 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: #CC5500;
+        }
+        
+        .filter-group {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .sidebar select, .sidebar input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .apply-btn {
+            width: 100%;
+            background: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .apply-btn:hover {
+            background: #0056b3;
+        }
+
+        /* Main Content Area */
+        .content-area {
+            flex-grow: 1; /* Takes up remaining space */
+            padding: 30px;
+        }
+        
+        .content-header {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .content-header h1 {
+            font-size: 2.5em;
+        }
+        
+        #site-count {
+            font-size: 1.1em;
+            color: #CC5500;
+            font-weight: 600;
+        }
+
+        /* Site Grid */
+        .site-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .site-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none; /* Important for anchor tags */
+        }
+
+        .site-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .site-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+        
+        .site-card-info {
+            padding: 15px;
+        }
+        
+        .site-card-info h3 {
+            margin-bottom: 5px;
+            color: #007BFF;
+        }
+        
+        .site-card-info p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .site-card-info .tags span {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: #888;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        
+        .view-details-btn {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background: #CC5500;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Footer (Consistent) */
+        footer {
+            background: #2c3e50; 
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Bharat Darshan</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html" class="active">Explore Sites</a></li>
+                <li><a href="tours.html">Virtual Tours</a></li>
+                <li><a href="about.html">About India</a></li>
+                <li><a href="login.html" class="login-btn">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <h2>🔎 Filter Heritage</h2>
+            
+            <div class="filter-group">
+                <label for="search-text">Search by Name / City</label>
+                <input type="text" id="search-text" placeholder="e.g., Taj Mahal, Delhi">
+            </div>
+
+            <div class="filter-group">
+                <label for="type-filter">Site Type</label>
+                <select id="type-filter">
+                    <option value="all">All Types</option>
+                    <option value="monument">Monument / Structure</option>
+                    <option value="temple">Temple / Religious Site</option>
+                    <option value="fort">Fort / Citadel</option>
+                    <option value="museum">Museum / Archive</option>
+                    <option value="natural">Natural Wonder</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="era-filter">Historical Era</label>
+                <select id="era-filter">
+                    <option value="all">All Eras</option>
+                    <option value="ancient">Ancient (pre-8th Century)</option>
+                    <option value="medieval">Medieval (8th - 18th Century)</option>
+                    <option value="colonial">Colonial (18th - 19th Century)</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="state-filter">State / Territory</label>
+                <select id="state-filter">
+                    <option value="all">All States</option>
+                    <option value="up">Uttar Pradesh</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="maha">Maharashtra</option>
+                    <option value="karn">Karnataka</option>
+                    </select>
+            </div>
+
+            <button class="apply-btn" onclick="applyFilters()">Apply Filters</button>
+        </aside>
+
+        <div class="content-area">
+            <div class="content-header">
+                <h1>Featured Heritage Sites</h1>
+                <span id="site-count">Showing 10 of 250 Sites</span>
+            </div>
+            
+            <div class="site-grid" id="heritage-grid">
+                
+                <a class="site-card" href="site-detail.html?id=1" onclick="console.log('Viewing Taj Mahal Detail')">
+                    <img src="\assets\images\taj-mahal-indian-palace-famous-religion-temple-agra-india-29900959.webp" alt="Taj Mahal">
+                    <div class="site-card-info">
+                        <h3>Taj Mahal, Agra</h3>
+                        <p>An ivory-white marble mausoleum on the south bank of the Yamuna river.</p>
+                        <div class="tags">
+                            <span>Monument</span>
+                            <span>Mughal</span>
+                            <span>UP</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="site-card" href="site-detail.html?id=2" onclick="console.log('Viewing Red Fort Detail')">
+                    <img src="\assets\images\Red_Fort_-Delhi_-National_Capital_Territory_of_Delhi_-DSC004.jpg" alt="Red Fort">
+                    <div class="site-card-info">
+                        <h3>Red Fort (Lal Qila), Delhi</h3>
+                        <p>A historic fort in the city of Delhi that served as the main residence of the Mughal Emperors.</p>
+                        <div class="tags">
+                            <span>Fort</span>
+                            <span>Mughal</span>
+                            <span>Delhi</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="site-card" href="site-detail.html?id=3" onclick="console.log('Viewing Hampi Detail')">
+                    <img src="\assets\images\Group_of_monuments_at_Hampi_by_Shagil_Kannur_(36).jpg" alt="Hampi Ruins">
+                    <div class="site-card-info">
+                        <h3>Group of Monuments at Hampi</h3>
+                        <p>The ruins of the Vijaynagara Empire, a UNESCO World Heritage Site.</p>
+                        <div class="tags">
+                            <span>Ruins</span>
+                            <span>Medieval</span>
+                            <span>Karnataka</span>
+                        </div>
+                    </div>
+                </a>
+                
+                </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 India Heritage Explorer (Bharat Darshan). Inspired by rich Indian culture. | Privacy Policy | Contact Us</p>
+    </footer>
+
+    <script>
+        // Simple function to demonstrate filter application (In a real app, this would query a backend API)
+        function applyFilters() {
+            const searchText = document.getElementById('search-text').value;
+            const typeFilter = document.getElementById('type-filter').value;
+            const eraFilter = document.getElementById('era-filter').value;
+            const stateFilter = document.getElementById('state-filter').value;
+
+            console.log('Filters Applied:', {
+                search: searchText,
+                type: typeFilter,
+                era: eraFilter,
+                state: stateFilter
+            });
+            
+            alert(`Searching for sites matching: ${searchText || 'Any Name'}, Type: ${typeFilter}, Era: ${eraFilter}, State: ${stateFilter}.`);
+        }
+        
+        // JavaScript to ensure the 'Explore Sites' link is highlighted
+        document.addEventListener('DOMContentLoaded', () => {
+             // Set the active navigation link
+             document.querySelectorAll('.nav-links a').forEach(link => {
+                 link.classList.remove('active');
+             });
+             const exploreLink = document.querySelector('a[href="explore.html"]');
+             if (exploreLink) {
+                exploreLink.classList.add('active');
+             }
+        });
+    </script>
+</body>
+</html>

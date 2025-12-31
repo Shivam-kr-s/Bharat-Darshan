@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Heritage Explorer - Discover the Wonders of India</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Basic Reset and Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+        }
+        
+        /* Containers */
+        main {
+            padding-top: 70px; /* Space for fixed header */
+        }
+        
+        section {
+            padding: 50px 5%;
+            margin-bottom: 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px 5%;
+            position: fixed; /* Fixed position for easy access */
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #CC5500; /* Saffron/Orange tone */
+            font-weight: 700;
+            text-decoration: none; /* Make logo clickable if needed */
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+        .nav-links li {
+            display: inline;
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #007BFF; /* Vibrant blue for active state */
+        }
+
+        .login-btn {
+            border: 1px solid #007BFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Hero Section (The main visual focus) */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1500x800/222/fff?text=India+Monument+Background') center/cover no-repeat; 
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+        
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* Call-to-Action (CTA) Button Styling */
+        .cta-button, .secondary-button {
+            display: inline-block;
+            background: #CC5500; /* Rich orange/saffron */
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+        }
+
+        .cta-button:hover, .secondary-button:hover {
+            background: #a94500;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            background: #007BFF;
+        }
+        .secondary-button:hover {
+            background: #0056b3;
+        }
+
+        /* Quick Explore Section */
+        .quick-explore {
+            text-align: center;
+        }
+        .quick-explore h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .category-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-card h3 {
+            color: #CC5500;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 5px;
+        }
+
+        /* Featured Tour Section */
+        .featured-tour {
+            background-color: #e0f7fa; /* Light cyan background */
+            text-align: center;
+            border-radius: 10px;
+            margin: 0 5%;
+        }
+        .featured-tour h2 {
+            font-family: 'Playfair Display', serif;
+            color: #004d40;
+            margin-bottom: 10px;
+        }
+        .featured-tour p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50; /* Darker, professional color */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Bharat Darshan</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="explore.html">Explore Sites</a></li>
+                <li><a href="tours.html">Virtual Tours</a></li>
+                <li><a href="about.html">About India</a></li>
+                <li id="auth-status-li">
+                    <a href="login.html" id="auth-link" class="login-btn">Login/Register</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Unearth the Timeless Stories of India</h1>
+                <p>Explore a civilization rich in culture, legendary monuments, and diverse heritage. Start your journey into the heart of Bharat.</p>
+                <a href="explore.html" class="cta-button">Start Your Exploration</a>
+            </div>
+        </section>
+
+        <section class="quick-explore">
+            <h2>Quick Exploration Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="loadContent('monuments')">
+                    <h3>🏛️ Historic Monuments</h3>
+                    <p>Discover wonders like the Red Fort, Qutub Minar, and Hampi's ruins.</p>
+                </div>
+                <div class="category-card" onclick="loadContent('arts')">
+                    <h3>🎭 Classical Arts & Dance</h3>
+                    <p>Know the graceful secrets of Kathak, Bharatnatyam, and regional folk forms.</p>
+                </div>
+                <div class="category-card" onclick="loadContent('cuisine')">
+                    <h3>🌶️ Regional Cuisine</h3>
+                    <p>A culinary tour of India's flavors, from Kashmiri Wazwan to South Indian Thali.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-tour">
+            <h2>Featured Virtual Tour: The Ancient Caves of Ajanta & Ellora</h2>
+            <p>Join our live Tour Guide for a deep dive into Buddhist, Hindu, and Jain rock-cut architecture. <br>
+                **Next session:** Saturday, 11:00 AM IST.</p>
+            <a href="tours.html" class="secondary-button">View Tour Schedule & Register</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 India Heritage Explorer (Bharat Darshan). Inspired by rich Indian culture. | Privacy Policy | Contact Us</p>
+    </footer>
+
+    <script>
+        // Placeholder function for handling category clicks
+        function loadContent(category) {
+            console.log('Category clicked:', category);
+            alert('Redirecting to Explore Sites page to show ' + category + ' content.');
+            window.location.href = 'explore.html'; 
+        }
+
+        // Logic to update navigation link based on simulated login status
+        function checkLoginStatus() {
+            const userRole = localStorage.getItem('userRole'); // Check simulated role from localStorage
+            const authLink = document.getElementById('auth-link');
+            
+            // Clear existing elements in the list item
+            const authLi = document.getElementById('auth-status-li');
+            authLi.innerHTML = '';
+            authLi.appendChild(authLink);
+
+
+            if (userRole) {
+                authLink.textContent = 'My Dashboard';
+                authLink.classList.remove('login-btn');
+                authLink.classList.add('dashboard-btn');
+                
+                let targetURL = 'index.html'; // Default for Enthusiast
+                
+                if (userRole === 'admin') {
+                    targetURL = 'admin/dashboard.html';
+                } 
+                // Add logic for 'creator' or 'guide' if they have a dedicated panel
+                
+                authLink.href = targetURL;
+                
+                // Add a Logout button next to the Dashboard link
+                const logoutLink = document.createElement('a');
+                logoutLink.href = '#';
+                logoutLink.textContent = ' (Logout)';
+                logoutLink.style.textDecoration = 'none';
+                logoutLink.style.color = '#CC5500';
+                logoutLink.onclick = function() {
+                    localStorage.removeItem('userRole');
+                    window.location.reload();
+                };
+                authLink.insertAdjacentElement('afterend', logoutLink);
+                
+            } else {
+                // Not logged in
+                authLink.textContent = 'Login/Register';
+                authLink.href = 'login.html';
+                authLink.classList.add('login-btn');
+                authLink.classList.remove('dashboard-btn');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure Home is active
+            document.querySelector('a[href="index.html"]').classList.add('active');
+            
+            // Check and update the login status on page load
+            checkLoginStatus(); 
+        });
+    </script>
+</body>
+</html>
